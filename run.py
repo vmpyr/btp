@@ -1,5 +1,5 @@
 noise = 10 # noise level, 10%.
-num_epochs = 800000 # number of training epochs.
+num_epochs = 400000 # number of training epochs.
 num_speckle = 40 # number of speckles.
 num_test = 1 # number of tests.
 #

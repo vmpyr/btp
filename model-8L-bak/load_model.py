@@ -348,10 +348,10 @@ weights[6] = 100
 #
 # Step-1 Train NeoHookean
 #
-# mu = dde.Variable(4.0) #truth 1.0
-# lam_load = dde.Variable(7.0) #truth 3.0
-# #
-# model.compile("adam", lr=0.001,external_trainable_variables=[mu,lam_load],loss_weights = weights)
+mu = dde.Variable(4.0) #truth 1.0
+lam_load = dde.Variable(7.0) #truth 3.0
+#
+model.compile("adam", lr=0.001,external_trainable_variables=[mu,lam_load],loss_weights = weights)
 # variable = dde.callbacks.VariableValue([mu,lam_load], period=100,filename="variable_history",precision=9)
 
 
@@ -360,6 +360,10 @@ model.restore("./btp_model-800000.pt", "cuda:0", 1)
 # load npy data from a file
 x = np.load('test_x.npy')
 y = model.predict(x)
+with open('predictions', 'w') as f:
+    for i in range(x.shape[0]):
+        f.write("x:      " + str(x[i]) + "\n")
+        f.write("y_pred: " + str(y[i]) + "\n\n")
 # for i in range(x.shape[0]):
 #     print("x: ", x[i])
 #     print("model prediction: ", y[i])
